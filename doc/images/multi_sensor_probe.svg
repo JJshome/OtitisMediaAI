@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f5f7fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c3cfe2;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="probe-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a1c4fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c2e9fb;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="lens-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0072ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00c6ff;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="vibration-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff9a9e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fad0c4;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="temp-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff7300;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffecd2;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="pressure-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="acoustic-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#667eea;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="eeg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#13547a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#80d0c7;stop-opacity:1" />
+    </linearGradient>
+    
+    <filter id="drop-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+    
+    <!-- Animation definitions -->
+    <clipPath id="probe-clip">
+      <path d="M380,310 L420,310 L435,330 L435,390 L405,430 L380,390 Z" />
+    </clipPath>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bg-gradient)" />
+  
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#333">
+    Multi-Sensor Probe Design
+  </text>
+  <text x="400" y="70" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#555">
+    Compact Integrated Sensors for Otitis Media Diagnosis
+  </text>
+  
+  <!-- Main probe body (handle) -->
+  <g transform="translate(0, 0)">
+    <path d="M300,250 L500,250 C510,250 520,260 520,270 L520,330 C520,340 510,350 500,350 L300,350 C290,350 280,340 280,330 L280,270 C280,260 290,250 300,250 Z" 
+          fill="#e0e0e0" stroke="#999" stroke-width="2" filter="url(#drop-shadow)" />
+    
+    <!-- Grip texture -->
+    <g fill="none" stroke="#ccc" stroke-width="1">
+      <path d="M310,250 L310,350" />
+      <path d="M330,250 L330,350" />
+      <path d="M350,250 L350,350" />
+      <path d="M370,250 L370,350" />
+      <path d="M390,250 L390,350" />
+      <path d="M410,250 L410,350" />
+      <path d="M430,250 L430,350" />
+      <path d="M450,250 L450,350" />
+      <path d="M470,250 L470,350" />
+      <path d="M490,250 L490,350" />
+    </g>
+    
+    <!-- Control button -->
+    <circle cx="400" cy="220" r="15" fill="#4285f4" stroke="#2c5ea3" stroke-width="2" />
+    <circle cx="400" cy="220" r="10" fill="#ffffff" opacity="0.3" />
+    
+    <!-- Connection between handle and probe tip -->
+    <rect x="380" y="350" width="40" height="20" fill="#d0d0d0" />
+    
+    <!-- Probe tip -->
+    <path d="M380,310 L420,310 L435,330 L435,390 L405,430 L380,390 Z" 
+          fill="url(#probe-gradient)" stroke="#888" stroke-width="2" filter="url(#drop-shadow)" />
+          
+    <!-- Animated light inside probe (suggesting active sensors) -->
+    <path d="M380,310 L420,310 L435,330 L435,390 L405,430 L380,390 Z" 
+          fill="#ffffff" opacity="0.1" clip-path="url(#probe-clip)">
+      <animate attributeName="opacity" values="0.1;0.3;0.1" dur="2s" repeatCount="indefinite" />
+    </path>
+    
+    <!-- Sensor tip elements -->
+    <!-- Image sensor (camera) -->
+    <circle cx="407" cy="322" r="8" fill="url(#lens-gradient)" stroke="#444" stroke-width="1" />
+    <circle cx="407" cy="322" r="5" fill="#fff" opacity="0.2" />
+    <circle cx="405" cy="320" r="1" fill="#fff" opacity="0.8" />
+    
+    <!-- Vibration sensor -->
+    <rect x="390" y="335" width="14" height="14" rx="2" ry="2" fill="url(#vibration-gradient)" stroke="#444" stroke-width="1" />
+    <path d="M393,342 L397,339 L401,344 L405,336" stroke="#fff" stroke-width="1" fill="none" />
+    
+    <!-- Temperature sensor -->
+    <circle cx="415" cy="355" r="6" fill="url(#temp-gradient)" stroke="#444" stroke-width="1" />
+    <text x="415" y="358" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="#fff">°C</text>
+    
+    <!-- Pressure sensor -->
+    <rect x="390" y="360" width="12" height="12" rx="6" ry="6" fill="url(#pressure-gradient)" stroke="#444" stroke-width="1" />
+    <path d="M393,366 L399,366 M396,363 L396,369" stroke="#fff" stroke-width="1" />
+    
+    <!-- Acoustic emission sensor -->
+    <circle cx="410" cy="380" r="7" fill="url(#acoustic-gradient)" stroke="#444" stroke-width="1" />
+    <path d="M407,380 L413,380 M410,377 L410,383" stroke="#fff" stroke-width="1" />
+    <path d="M405,376 C415,376 415,384 405,384" stroke="#fff" stroke-width="0.5" fill="none" />
+    
+    <!-- EEG sensor -->
+    <rect x="395" y="395" width="16" height="8" rx="4" ry="4" fill="url(#eeg-gradient)" stroke="#444" stroke-width="1" />
+    <path d="M398,399 L400,396 L402,402 L404,394 L406,399 L408,396" stroke="#fff" stroke-width="0.5" fill="none" />
+  </g>
+  
+  <!-- Sensor Details -->
+  <!-- Image Sensor -->
+  <g transform="translate(580, 150)">
+    <rect x="0" y="0" width="180" height="70" rx="10" ry="10" fill="url(#lens-gradient)" filter="url(#drop-shadow)" />
+    <text x="90" y="25" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#fff">
+      Image Sensor
+    </text>
+    <text x="90" y="45" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#fff">
+      12MP CMOS, f/2.0
+    </text>
+    <text x="90" y="60" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#fff">
+      140° Wide Angle
+    </text>
+    
+    <!-- Connection line -->
+    <line x1="-163" y1="172" x2="0" y2="35" stroke="#666" stroke-width="2" stroke-dasharray="5,3" />
+    <circle cx="-163" cy="172" r="5" fill="url(#lens-gradient)" />
+  </g>
+  
+  <!-- Vibration Sensor -->
+  <g transform="translate(580, 230)">
+    <rect x="0" y="0" width="180" height="70" rx="10" ry="10" fill="url(#vibration-gradient)" filter="url(#drop-shadow)" />
+    <text x="90" y="25" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">
+      Vibration Sensor
+    </text>
+    <text x="90" y="45" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+      MEMS Accelerometer
+    </text>
+    <text x="90" y="60" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+      Laser Doppler System
+    </text>
+    
+    <!-- Connection line -->
+    <line x1="-175" y1="110" x2="0" y2="35" stroke="#666" stroke-width="2" stroke-dasharray="5,3" />
+    <circle cx="-175" cy="110" r="5" fill="url(#vibration-gradient)" />
+  </g>
+  
+  <!-- Temperature Sensor -->
+  <g transform="translate(580, 310)">
+    <rect x="0" y="0" width="180" height="70" rx="10" ry="10" fill="url(#temp-gradient)" filter="url(#drop-shadow)" />
+    <text x="90" y="25" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">
+      Temperature Sensor
+    </text>
+    <text x="90" y="45" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+      IR Temperature
+    </text>
+    <text x="90" y="60" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+      ±0.1°C Accuracy
+    </text>
+    
+    <!-- Connection line -->
+    <line x1="-165" y1="45" x2="0" y2="35" stroke="#666" stroke-width="2" stroke-dasharray="5,3" />
+    <circle cx="-165" cy="45" r="5" fill="url(#temp-gradient)" />
+  </g>
+  
+  <!-- Pressure Sensor -->
+  <g transform="translate(580, 390)">
+    <rect x="0" y="0" width="180" height="70" rx="10" ry="10" fill="url(#pressure-gradient)" filter="url(#drop-shadow)" />
+    <text x="90" y="25" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">
+      Pressure Sensor
+    </text>
+    <text x="90" y="45" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+      MEMS Pressure
+    </text>
+    <text x="90" y="60" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">
+      -400 to +400 daPa
+    </text>
+    
+    <!-- Connection line -->
+    <line x1="-178" y1="0" x2="0" y2="35" stroke="#666" stroke-width="2" stroke-dasharray="5,3" />
+    <circle cx="-178" cy="0" r="5" fill="url(#pressure-gradient)" />
+  </g>
+  
+  <!-- Acoustic Sensor -->
+  <g transform="translate(120, 200)">
+    <rect x="0" y="0" width="180" height="70" rx="10" ry="10" fill="url(#acoustic-gradient)" filter="url(#drop-shadow)" />
+    <text x="90" y="25" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#fff">
+      Acoustic Sensor
+    </text>
+    <text x="90" y="45" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#fff">
+      MEMS Microphone
+    </text>
+    <text x="90" y="60" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#fff">
+      -10 to 40 dB SPL
+    </text>
+    
+    <!-- Connection line -->
+    <line x1="290" y1="180" x2="180" y2="35" stroke="#666" stroke-width="2" stroke-dasharray="5,3" />
+    <circle cx="290" cy="180" r="5" fill="url(#acoustic-gradient)" />
+  </g>
+  
+  <!-- EEG Sensor -->
+  <g transform="translate(120, 310)">
+    <rect x="0" y="0" width="180" height="70" rx="10" ry="10" fill="url(#eeg-gradient)" filter="url(#drop-shadow)" />
+    <text x="90" y="25" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#fff">
+      EEG Sensor
+    </text>
+    <text x="90" y="45" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#fff">
+      Dry Electrode
+    </text>
+    <text x="90" y="60" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#fff">
+      Pain Pattern Detection
+    </text>
+    
+    <!-- Connection line -->
+    <line x1="280" y1="85" x2="180" y2="35" stroke="#666" stroke-width="2" stroke-dasharray="5,3" />
+    <circle cx="280" cy="85" r="5" fill="url(#eeg-gradient)" />
+  </g>
+  
+  <!-- Probe Dimensions -->
+  <g transform="translate(230, 520)">
+    <rect x="0" y="0" width="340" height="60" rx="10" ry="10" fill="rgba(255,255,255,0.8)" stroke="#888" stroke-width="1" />
+    <text x="170" y="25" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#333">
+      Probe Specifications
+    </text>
+    <text x="170" y="45" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+      Diameter: 3mm • Length: 40mm • Weight: 15g
+    </text>
+  </g>
+  
+  <!-- Animation: Pulsing highlight on probe tip -->
+  <circle cx="407" cy="365" r="40" fill="#ffffff" opacity="0">
+    <animate attributeName="opacity" values="0;0.2;0" dur="3s" repeatCount="indefinite" />
+    <animate attributeName="r" values="30;50;30" dur="3s" repeatCount="indefinite" />
+  </circle>
+  
+  <!-- Animation: Signal waves from acoustic sensor -->
+  <g opacity="0.5" stroke="#667eea" stroke-width="1" fill="none">
+    <circle cx="410" cy="380" r="8">
+      <animate attributeName="r" values="8;15;22;29;36" dur="2s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0.6;0.5;0.4;0.3;0" dur="2s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="410" cy="380" r="15">
+      <animate attributeName="r" values="15;22;29;36;43" dur="2s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0.5;0.4;0.3;0.2;0" dur="2s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="410" cy="380" r="22">
+      <animate attributeName="r" values="22;29;36;43;50" dur="2s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0.4;0.3;0.2;0.1;0" dur="2s" repeatCount="indefinite" />
+    </circle>
+  </g>
+</svg>
