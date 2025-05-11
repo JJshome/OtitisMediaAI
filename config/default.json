@@ -1,0 +1,259 @@
+{
+  "application_name": "OtitisMediaAI",
+  "version": "0.1.0",
+  "description": "Multi-Sensor Fusion and AI-Based Otitis Media with Effusion Diagnosis System",
+  
+  "sensor_config": {
+    "device_path": "/dev/ttyUSB0",
+    "sample_rate": 30,
+    "enable_image_sensor": true,
+    "enable_vibration_sensor": true,
+    "enable_temperature_sensor": true,
+    "enable_pressure_sensor": true,
+    "enable_acoustic_sensor": true,
+    "enable_eeg_sensor": true,
+    
+    "image_sensor_config": {
+      "resolution": [1200, 1200],
+      "frame_rate": 30,
+      "auto_focus": true,
+      "format": "RGB"
+    },
+    
+    "vibration_sensor_config": {
+      "sample_rate": 1000,
+      "frequency_range": [100, 10000],
+      "stimulus_frequency": 226,
+      "stimulus_amplitude": 70
+    },
+    
+    "temperature_sensor_config": {
+      "sample_rate": 10,
+      "min_temp": 25.0,
+      "max_temp": 45.0,
+      "use_temperature_map": false
+    },
+    
+    "pressure_sensor_config": {
+      "sample_rate": 100,
+      "min_pressure": -400,
+      "max_pressure": 400,
+      "resolution": 1
+    },
+    
+    "acoustic_sensor_config": {
+      "sample_rate": 44100,
+      "bit_depth": 16,
+      "channels": 1,
+      "frequency_range": [100, 20000]
+    },
+    
+    "eeg_sensor_config": {
+      "sample_rate": 256,
+      "channels": 1,
+      "frequency_range": [0.1, 100]
+    },
+    
+    "probe_config": {
+      "max_insertion_depth": 30,
+      "led_brightness": 80,
+      "power_saving_mode": false
+    }
+  },
+  
+  "preprocessing_config": {
+    "image_preprocessing": {
+      "resize": [224, 224],
+      "normalize": true,
+      "enhance_contrast": true,
+      "denoise": true
+    },
+    
+    "signal_preprocessing": {
+      "apply_filters": true,
+      "bandpass": [20, 20000],
+      "notch_filter": 50,
+      "normalize": true
+    },
+    
+    "data_fusion": {
+      "synchronization_window": 50,
+      "time_alignment_method": "cross_correlation"
+    }
+  },
+  
+  "model_config": {
+    "model_path": "models/transformer",
+    "weights_path": "models/transformer/weights/latest.h5",
+    "input_dim": 256,
+    "num_heads": 8,
+    "num_encoder_layers": 6,
+    "dropout_rate": 0.1,
+    "learning_rate": 0.0001,
+    "use_gpu": true,
+    
+    "image_encoder_config": {
+      "pretrained_base": "resnet50",
+      "freeze_base": true,
+      "output_dim": 256
+    },
+    
+    "vibration_encoder_config": {
+      "filters": [64, 128, 256],
+      "kernel_sizes": [9, 5, 3],
+      "output_dim": 256
+    },
+    
+    "temperature_encoder_config": {
+      "use_temperature_map": false,
+      "output_dim": 256
+    },
+    
+    "pressure_encoder_config": {
+      "lstm_units": 128,
+      "output_dim": 256
+    },
+    
+    "acoustic_encoder_config": {
+      "filters": [64, 128, 256],
+      "kernel_sizes": [9, 5, 3],
+      "frame_length": 256,
+      "frame_step": 128,
+      "output_dim": 256
+    },
+    
+    "eeg_encoder_config": {
+      "filters": [64, 128, 256],
+      "kernel_sizes": [11, 7, 5],
+      "output_dim": 256
+    }
+  },
+  
+  "visualization_config": {
+    "enabled": true,
+    "output_dir": "output/visualizations",
+    "ar_mode": true,
+    "model_quality": "medium",
+    
+    "model_generator_config": {
+      "mesh_resolution": "medium",
+      "texturing_quality": "high",
+      "generate_uvs": true,
+      "include_animations": true
+    },
+    
+    "ar_renderer_config": {
+      "device": "HoloLens2",
+      "background_opacity": 0.2,
+      "annotation_style": "medical",
+      "color_scheme": "diagnostic",
+      "interaction_mode": "gestural"
+    }
+  },
+  
+  "prognosis_config": {
+    "recovery_model_path": "models/prognosis/recovery_model.h5",
+    "treatment_model_path": "models/prognosis/treatment_model.h5",
+    "risk_factors": [
+      "age",
+      "previous_episodes",
+      "allergy_history",
+      "immune_status",
+      "daycare_attendance"
+    ],
+    "treatment_options": [
+      "Watchful waiting",
+      "Antibiotics",
+      "Nasal steroids",
+      "Ventilation tube insertion",
+      "Adenoidectomy"
+    ],
+    "follow_up_intervals": [
+      7,
+      14,
+      30,
+      90,
+      180
+    ]
+  },
+  
+  "cloud_config": {
+    "enabled": true,
+    "server_url": "https://cloud.otitismedia-ai.org",
+    "api_key": "",
+    "upload_interval": 3600,
+    "automatic_sync": true,
+    "data_retention_days": 90,
+    "encryption_enabled": true
+  },
+  
+  "ui_config": {
+    "theme": "light",
+    "language": "en",
+    "display_mode": "professional",
+    "show_confidence_scores": true,
+    "auto_save_results": true,
+    "results_dir": "output/results",
+    "display_sensor_data": true,
+    "fullscreen": false
+  },
+  
+  "logging_config": {
+    "log_level": "INFO",
+    "log_dir": "logs",
+    "max_log_files": 10,
+    "max_file_size_mb": 10,
+    "console_logging": true,
+    "log_format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  },
+  
+  "simulation": {
+    "cases_dir": "data/simulation",
+    "default_cases": [
+      {
+        "id": "normal_01",
+        "name": "Normal Ear",
+        "description": "Healthy tympanic membrane with good mobility",
+        "diagnosis": "Normal",
+        "severity": 0.0,
+        "has_effusion": false
+      },
+      {
+        "id": "ome_mild_01",
+        "name": "Mild OME",
+        "description": "Mild otitis media with effusion, serous fluid",
+        "diagnosis": "OME",
+        "severity": 0.3,
+        "has_effusion": true,
+        "effusion_type": "Serous"
+      },
+      {
+        "id": "ome_severe_01",
+        "name": "Severe OME",
+        "description": "Severe otitis media with effusion, mucoid fluid",
+        "diagnosis": "OME",
+        "severity": 0.8,
+        "has_effusion": true,
+        "effusion_type": "Mucoid"
+      },
+      {
+        "id": "aom_01",
+        "name": "Acute Otitis Media",
+        "description": "Acute otitis media with significant inflammation",
+        "diagnosis": "AOM",
+        "severity": 0.7,
+        "has_effusion": true,
+        "effusion_type": "Purulent"
+      },
+      {
+        "id": "csom_01",
+        "name": "Chronic Suppurative Otitis Media",
+        "description": "Chronic infection with tympanic membrane perforation",
+        "diagnosis": "CSOM",
+        "severity": 0.6,
+        "has_effusion": true,
+        "effusion_type": "Purulent"
+      }
+    ]
+  }
+}
